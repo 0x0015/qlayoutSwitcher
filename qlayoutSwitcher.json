@@ -2,12 +2,12 @@
   "command" : "setxkbmap",
   "layouts" : [
     {
-      "name" : "US QWERTY",
-      "id" : "us"
-    },
-    {
       "name" : "US DVORAK",
       "id" : "us dvorak"
+    },
+    {
+      "name" : "US QWERTY",
+      "id" : "us"
     }
   ]
 }
