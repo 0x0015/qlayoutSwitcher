@@ -8,19 +8,19 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    lSoptions::load();
+    if(auto r = lSoptions::load() != 0){
+	    return r;
+    }
 
     layoutSwitcher l;
-   
-    auto hotkey = new QHotkey(QKeySequence("ctrl+shift+space"), true, &app);//The hotkey will be automatically registered
-	qDebug() << "Hotkey is Registered: " << hotkey->isRegistered();
 
-	QObject::connect(hotkey, &QHotkey::activated, qApp, [&](){
-		//qDebug() << "Hotkey Activated - the application will quit now";
-		//qApp->quit();
-		//Screenshot* screenshot = new Screenshot();
-		l.activateNextLayout();
-	});
+    if(lSoptions::hotkey){
+	    auto hotkey = new QHotkey(QKeySequence(QString(lSoptions::hotkey.value().c_str())), true, &app);//The hotkey will be automatically registered
+	    qDebug() << "Hotkey is Registered: " << hotkey->isRegistered();
+	    QObject::connect(hotkey, &QHotkey::activated, qApp, [&](){
+			l.activateNextLayout();
+		});
+    }
 
     return app.exec();
 }

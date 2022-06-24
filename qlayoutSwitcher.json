@@ -1,5 +1,6 @@
 {
   "command" : "setxkbmap",
+  "hotkey" : "ctrl+shift+space",
   "layouts" : [
     {
       "name" : "US DVORAK",

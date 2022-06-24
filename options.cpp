@@ -15,7 +15,12 @@ int lSoptions::load(){
 	if(j.contains("command")){
 		baseCommand = j["command"].get<std::string>();
 	}else{
+		std::cerr<<"Error: unable to find commmand in qlayoutSwitcher.json"<<std::endl;
 		return -2;
+	}
+
+	if(j.contains("hotkey")){
+		hotkey = j["hotkey"].get<std::string>();
 	}
 
 	if(!j.contains("layouts")){
